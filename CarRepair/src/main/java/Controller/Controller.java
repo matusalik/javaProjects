@@ -21,6 +21,12 @@ public class Controller {
                 case "addjob":
                     jobList.addJob(view.addJob());
                     break;
+                case "deljob":
+                    if(jobList.delJob(view.delJob()))
+                        view.succesfullJobDeletionMessage();
+                    else
+                        view.unsuccesfullJobDeletionMessage();
+                    break; 
                 case "showjobs":
                     view.showJobs(jobList);
                     break;

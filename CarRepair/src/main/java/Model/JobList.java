@@ -10,6 +10,7 @@ public class JobList {
         jobList = new ArrayList<Job>();
     }
     
+    //Basic getter
     public List<Job> getJobList() {
         return jobList;
     } 
@@ -18,6 +19,17 @@ public class JobList {
     public void addJob(Job sentJob){
         jobList.add(sentJob);
     } 
+    
+    //Deletes finished job based on car's registration input by user
+    public Boolean delJob(String sentRegistration){
+        for(int i = 0; i < jobList.size(); i++){
+            if(jobList.get(i).getCar().getRegistration().equals(sentRegistration)){
+                jobList.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
     
     //Overriden method which return job list as a string
     @Override

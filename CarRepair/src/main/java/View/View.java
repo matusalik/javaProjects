@@ -20,13 +20,22 @@ public class View {
         String res = in.nextLine();
         return res;
     }
+    //Method to inform that user succesfully deleted a job
+    public void succesfullJobDeletionMessage(){
+        System.out.println("Succesfully deleted a finished job!");
+    }
+    //Method to inform that user given incorrect registration
+    public void unsuccesfullJobDeletionMessage(){
+        System.out.println("Couln't find a car with given registration!");
+    }
     //Method to tell user that their command was unknown
     public void unknownCommandMessage(){
         System.out.println("Uknown command! Try again or type 'help'.");
     }
     //Method to show user full list of commands available
     public void listOfCommands(){
-        System.out.println("exit - quits the program\nhelp - shows the full list of commands");
+        System.out.println("exit - quits the program\nhelp - shows the full list of commands\naddjob - lets you add a new job\ndeljob - lets you delete a job you already finished"
+                + "\nshowjobs - shows you full list of your jobs");
     }
     //Method that lets user add new job to his agenda
     public Job addJob(){
@@ -44,5 +53,13 @@ public class View {
         Job res = new Job(name, surname, model, registration, mileage);
         System.out.println("Job added succesfully!");
         return res;
+    }
+    //Method that lets user delete finished job
+    public String delJob(){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Registration of a car you finished working on: ");
+        String registration = in.nextLine();
+        System.out.println(registration);
+        return registration;
     }
 }
