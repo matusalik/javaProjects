@@ -2,6 +2,10 @@ package Model;
 import Model.Car;
 import Model.Owner;
 
+/**
+ * Part of a model that marges owner with his car and makes it an object
+ * @author mateu
+ */
 public class Job {
     private Owner owner;
     private Car car;

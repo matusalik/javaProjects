@@ -4,6 +4,11 @@ import Model.JobNotFoundException;
 import Model.IncorrectInputTypeException;
 import View.View;
 
+/**
+ * Class made to cotroll the whole program
+ * It connects model with view
+ * @author mateu
+ */
 public class Controller {
     private JobList jobList;
     private View view;

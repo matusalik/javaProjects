@@ -1,5 +1,10 @@
 package Model;
 
+/**
+ * Part of the model
+ * Holds info about car
+ * @author mateu
+ */
 public class Car {
     private String model;
     private String registration;
@@ -11,17 +16,26 @@ public class Car {
         mileage = sentMileage;
     }
     
-    //Getter returning car's model
+    /**
+     * Returns car's model
+     * @return 
+     */
     public String getModel() {
         return model;
     }
 
-    //Getter returning car's registration
+    /**
+     * Returns car's registration
+     * @return 
+     */
     public String getRegistration() {
         return registration;
     }
 
-    //Getter returning car's mileage
+    /**
+     * Return car's mileage
+     * @return 
+     */
     public double getMileage() {
         return mileage;
     }

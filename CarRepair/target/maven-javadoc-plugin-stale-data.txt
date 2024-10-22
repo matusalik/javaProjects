@@ -1,0 +1,52 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'21'
+-sourcepath
+'C:/Users/mateu/OneDrive/Pulpit/javaProjects/CarRepair/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/mateu/OneDrive/Pulpit/javaProjects/CarRepair/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CarRepair 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'CarRepair 1.0-SNAPSHOT API'
+com.mycompany.carrepair
+Controller
+Model
+View
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\src\main\java = 1729626614025
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\allclasses-index.html = 1729638700467
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\allpackages-index.html = 1729638700469
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\copy.svg = 1729638700495
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\element-list = 1729638700370
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\help-doc.html = 1729638700489
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\index-all.html = 1729638700481
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\index.html = 1729638700455
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\link.svg = 1729638700496
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\member-search-index.js = 1729638700473
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\module-search-index.js = 1729638700470
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\overview-summary.html = 1729638700485
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\overview-tree.html = 1729638700451
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\package-search-index.js = 1729638700471
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\script.js = 1729638700493
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\search-page.js = 1729638700499
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\search.html = 1729638700483
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\search.js = 1729638700497
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\serialized-form.html = 1729638700404
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\stylesheet.css = 1729638700491
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\tag-search-index.js = 1729638700473
+C:\Users\mateu\OneDrive\Pulpit\javaProjects\CarRepair\target\reports\apidocs\type-search-index.js = 1729638700472

@@ -1,4 +1,9 @@
 package Model;
+/**
+ * Part of the model
+ * Hold info about car's owner
+ * @author mateu
+ */
 public class Owner {
     private String name;
     private String surname;
@@ -8,12 +13,18 @@ public class Owner {
         surname = sentSurname;
     }
     
-    //Getter returning owner's name
+    /**
+     * Return owner's name
+     * @return 
+     */
     public String getName() {
         return name;
     }
 
-    //Getter returning owner's surname
+    /**
+     * Returns owner's surname
+     * @return 
+     */
     public String getSurname() {
         return surname;
     }
