@@ -11,14 +11,17 @@ public class Car {
         mileage = sentMileage;
     }
     
+    //Getter returning car's model
     public String getModel() {
         return model;
     }
 
+    //Getter returning car's registration
     public String getRegistration() {
         return registration;
     }
 
+    //Getter returning car's mileage
     public double getMileage() {
         return mileage;
     }
