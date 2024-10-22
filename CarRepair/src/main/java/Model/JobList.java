@@ -1,5 +1,6 @@
 package Model;
 import Model.Job;
+import Model.JobNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +21,15 @@ public class JobList {
         jobList.add(sentJob);
     } 
     
-    //Deletes finished job based on car's registration input by user
-    public Boolean delJob(String sentRegistration){
+    //Deletes finished job based on car's registration input by user if there's no job with a car with given registration it throws an exception
+    public void delJob(String sentRegistration) throws JobNotFoundException{
         for(int i = 0; i < jobList.size(); i++){
             if(jobList.get(i).getCar().getRegistration().equals(sentRegistration)){
-                jobList.remove(i);
-                return true;
+                jobList.remove(i);   
+                return;
             }
         }
-        return false;
+        throw new JobNotFoundException("Job with car's registration: " + sentRegistration + " not found!");
     }
     
     //Overriden method which return job list as a string

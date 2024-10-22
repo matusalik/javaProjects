@@ -2,6 +2,7 @@ package View;
 import java.util.Scanner;
 import Model.JobList;
 import Model.Job;
+import Model.IncorrectInputTypeException;
 
 public class View {
     
@@ -24,13 +25,17 @@ public class View {
     public void succesfullJobDeletionMessage(){
         System.out.println("Succesfully deleted a finished job!");
     }
-    //Method to inform that user given incorrect registration
-    public void unsuccesfullJobDeletionMessage(){
-        System.out.println("Couln't find a car with given registration!");
-    }
     //Method to tell user that their command was unknown
     public void unknownCommandMessage(){
         System.out.println("Uknown command! Try again or type 'help'.");
+    }
+    //Method printing jobDeletion exception message
+    public void showJobDeletionExceptionMessage(String message){
+        System.out.println(message);
+    }
+    //Method printing jobAdding exception message
+    public void showIncorrectInputExceptionMessage(String message){
+        System.out.println(message);
     }
     //Method to show user full list of commands available
     public void listOfCommands(){
@@ -38,7 +43,7 @@ public class View {
                 + "\nshowjobs - shows you full list of your jobs");
     }
     //Method that lets user add new job to his agenda
-    public Job addJob(){
+    public Job addJob() throws IncorrectInputTypeException{
         Scanner in = new Scanner(System.in);
         System.out.print("Owner's name: ");
         String name = in.nextLine();
@@ -49,8 +54,14 @@ public class View {
         System.out.print("Car's registration: ");
         String registration = in.nextLine();
         System.out.print("Car's mileage: ");
-        double mileage = in.nextDouble();
-        Job res = new Job(name, surname, model, registration, mileage);
+        String mileage = in.nextLine();
+        double dmileage = 0;
+        try {
+            dmileage = Double.parseDouble(mileage);  
+        }catch(NumberFormatException e){
+            throw new IncorrectInputTypeException("Incorrect mileage input! Please try again.");
+        }
+        Job res = new Job(name, surname, model, registration, dmileage);
         System.out.println("Job added succesfully!");
         return res;
     }
@@ -59,7 +70,6 @@ public class View {
         Scanner in = new Scanner(System.in);
         System.out.print("Registration of a car you finished working on: ");
         String registration = in.nextLine();
-        System.out.println(registration);
         return registration;
     }
 }

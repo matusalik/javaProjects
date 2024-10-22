@@ -3,5 +3,7 @@ Model\Owner.class
 Model\Job.class
 Controller\Controller.class
 View\View.class
+Model\IncorrectInputTypeException.class
+Model\JobNotFoundException.class
 Model\Car.class
 Model\JobList.class

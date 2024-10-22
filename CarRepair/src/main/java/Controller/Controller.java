@@ -1,5 +1,7 @@
 package Controller;
 import Model.JobList;
+import Model.JobNotFoundException;
+import Model.IncorrectInputTypeException;
 import View.View;
 
 public class Controller {
@@ -19,13 +21,20 @@ public class Controller {
                     view.listOfCommands();
                     break;
                 case "addjob":
-                    jobList.addJob(view.addJob());
+                    try{
+                        jobList.addJob(view.addJob());
+                    }
+                    catch(IncorrectInputTypeException e){
+                        view.showIncorrectInputExceptionMessage(e.getMessage());
+                    }
                     break;
                 case "deljob":
-                    if(jobList.delJob(view.delJob()))
+                    try{
+                        jobList.delJob(view.delJob());
                         view.succesfullJobDeletionMessage();
-                    else
-                        view.unsuccesfullJobDeletionMessage();
+                    }catch(JobNotFoundException e){
+                        view.showJobDeletionExceptionMessage(e.getMessage());
+                    }            
                     break; 
                 case "showjobs":
                     view.showJobs(jobList);
