@@ -12,11 +12,21 @@ import View.View;
 public class Controller {
     private JobList jobList;
     private View view;
-    public Controller(JobList sentJobList, View sentView){
+    public Controller(JobList sentJobList, View sentView, String[] args){
         jobList = sentJobList;
         view = sentView;
+        if(args.length == 0){
+            view.noArgsMessage();
+            view.welcomeMessage();
+        }
+        else if(args.length == 2){
+            view.welcomeMessage(args[0], args[1]);
+        }
+        else{
+            view.incorrectAmountOfArgsMessage();
+            view.welcomeMessage();
+        }
         Boolean Switch = true;
-        view.welcomeMessage();
         while(Switch){
             switch(view.commandPrompt()){
                 case "exit":

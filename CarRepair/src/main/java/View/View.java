@@ -19,6 +19,26 @@ public class View {
         System.out.println("Hello!\nThis is you Job Agenda!\nPlease type in what do you want you want to do.\nIf you dont know any commands, type 'help'.");
     }
     /**
+     * Method that welcomes user with his name and surname
+     * @param mechanicName
+     * @param mechanicSurname 
+     */
+    public void welcomeMessage(String mechanicName, String mechanicSurname){
+        System.out.println("Hello " + mechanicName + " " + mechanicSurname + "!\nThis is you Job Agenda!\nPlease type in what do you want you want to do.\nIf you dont know any commands, type 'help'.");
+    }
+    /**
+     * Method that tells user he didn't put any addidtional parameters in cmd
+     */
+    public void noArgsMessage(){
+        System.out.println("No addidtional parameters passed.");
+    }
+    /**
+     * Method that tells user he passed incorrect amount of parameters and continues to run the program without parameters
+     */
+    public void incorrectAmountOfArgsMessage(){
+        System.out.println("Incorrect amount of arguments passed, continuing to program without your name and surname!");
+    }
+    /**
      * Method that takes input from user and returns it in String
      * @return 
      */

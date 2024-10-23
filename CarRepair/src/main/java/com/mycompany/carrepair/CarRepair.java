@@ -12,6 +12,6 @@ public class CarRepair {
         View view = new View();
         
         //CONTROLLER
-        Controller controller = new Controller(jobList, view);
+        Controller controller = new Controller(jobList, view, args);
     }
 }
