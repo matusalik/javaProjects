@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import com.mycompany.carrepairgui.Model.JobList;
 /**
  * FXML Controller class
  *
@@ -16,7 +18,7 @@ import javafx.scene.control.TableView;
  */
 public class MainMenuController implements Initializable {
 
-
+    private JobList jobList;
     @FXML
     private TableView<?> mainMenu_Table;
     @FXML
@@ -31,6 +33,10 @@ public class MainMenuController implements Initializable {
     private Button AddJobButton;
     @FXML
     private Button DelJobButton;
+    
+    public MainMenuController(JobList sentJobList){
+        jobList = sentJobList;
+    }
     /**
      * Initializes the controller class.
      */
@@ -41,6 +47,7 @@ public class MainMenuController implements Initializable {
     
     @FXML
     private void AddJobButton(ActionEvent event) {
+        
     }
 
     @FXML
