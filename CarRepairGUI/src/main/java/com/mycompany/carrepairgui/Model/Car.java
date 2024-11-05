@@ -33,5 +33,14 @@ public class Car {
     public double getMileage() {
         return mileage;
     }
+    public void setModel(String sentModel){
+        model = sentModel;
+    }
+    public void setRegistration(String sentRegistration){
+        registration = sentRegistration;
+    }
+    public void setMileage(double sentMileage){
+        mileage = sentMileage;
+    }
 }
 

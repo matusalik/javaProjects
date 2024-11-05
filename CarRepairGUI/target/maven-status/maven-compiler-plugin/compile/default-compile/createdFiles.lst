@@ -1,5 +1,6 @@
 com\mycompany\carrepairgui\Model\Job.class
 com\mycompany\carrepairgui\Model\JobList.class
+com\mycompany\carrepairgui\Controllers\AddJobController.class
 com\mycompany\carrepairgui\Model\JobNotFoundException.class
 com\mycompany\carrepairgui\Controllers\MainMenuController.class
 com\mycompany\carrepairgui\Model\Car.class

@@ -28,4 +28,10 @@ public class Owner {
     public String getSurname() {
         return surname;
     }
+    public void setName(String sentName){
+        name = sentName;
+    }
+    public void setSurname(String sentSurname){
+        surname = sentSurname;
+    }
 }

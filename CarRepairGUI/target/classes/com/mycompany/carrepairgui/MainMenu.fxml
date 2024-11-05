@@ -5,13 +5,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.carrepairgui.Controllers.MainMenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.carrepairgui.Controllers.MainMenuController">
    <children>
       <TableView fx:id="mainMenu_Table" prefHeight="325.0" prefWidth="607.0">
         <columns>
-          <TableColumn minWidth="120.0" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="Table_Name" minWidth="120.0" prefWidth="75.0" text="Surname" />
+          <TableColumn fx:id="Table_Name" minWidth="120.0" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="Table_Surname" minWidth="120.0" prefWidth="75.0" text="Surname" />
             <TableColumn fx:id="Table_Model" minWidth="127.0" prefWidth="75.0" text="Model" />
             <TableColumn fx:id="Table_Registration" minWidth="120.0" prefWidth="75.0" text="Registration" />
             <TableColumn fx:id="Table_Mileage" minWidth="120.0" prefWidth="75.0" text="Mileage" />
