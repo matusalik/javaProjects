@@ -1,7 +1,9 @@
 package com.mycompany.carrepairgui.Model;
 import com.mycompany.carrepairgui.Model.Car;
 import com.mycompany.carrepairgui.Model.Owner;
-
+import lombok.*;
+@Getter
+@Setter
 /**
  * Part of a model that marges owner with his car and makes it an object
  * @author mateu
@@ -21,24 +23,7 @@ public class Job {
     public Job(String name, String surname, String model, String registration, double mileage){
         owner = new Owner(name, surname);
         car = new Car(model, registration, mileage);
-    }
-    
-    /**
-     * Basic getter
-     * @return Owner
-     */
-    public Owner getOwner(){
-        return owner;
-    }
-    
-    /**
-     * Basic getter
-     * @return Car
-     */
-    public Car getCar(){
-        return car;
-    }
-    
+    }  
     /**
      * Overriden method to convert all job data to string
      * @return Job data as string

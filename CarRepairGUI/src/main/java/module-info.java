@@ -7,4 +7,5 @@ module com.mycompany.carrepairgui {
     exports com.mycompany.carrepairgui;
     exports com.mycompany.carrepairgui.Controllers;
     exports com.mycompany.carrepairgui.Model;
+    requires lombok;
 }

@@ -17,6 +17,7 @@
         </columns>
       </TableView>
       <Button fx:id="AddJobButton" layoutX="14.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAddJobButton" prefHeight="52.0" prefWidth="223.0" text="Add Job" />
-      <Button fx:id="DelJobButton" layoutX="370.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleDelJobButton" prefHeight="52.0" prefWidth="223.0" text="Delete Job" />
+      <Button fx:id="DelJobButton" layoutX="247.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleDelJobButton" prefHeight="52.0" prefWidth="223.0" text="Delete Job" />
+      <Button fx:id="RaportButton" layoutX="478.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleRaportButton" prefHeight="52.0" prefWidth="121.0" text="Raport" />
    </children>
 </AnchorPane>

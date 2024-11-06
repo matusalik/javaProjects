@@ -24,6 +24,9 @@ import com.mycompany.carrepairgui.App;
 import com.mycompany.carrepairgui.Controllers.AddJobController;
 import com.mycompany.carrepairgui.Model.JobList;
 import com.mycompany.carrepairgui.Model.Job;
+import com.mycompany.carrepairgui.Model.Client;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for Main Menu view
@@ -49,6 +52,8 @@ public class MainMenuController{
     private Button AddJobButton;
     @FXML
     private Button DelJobButton;
+    @FXML
+    private Button RaportButton;
     
     /**
      * Constructor made to pass original jobList to the Controller
@@ -139,6 +144,16 @@ public class MainMenuController{
         }
     }
     
+    @FXML
+    private void handleRaportButton() {
+        List<Client>clientList = new ArrayList<Client>();
+        for(Job i : this.data){
+            Client client = new Client(i.getOwner().getName(), i.getOwner().getSurname());
+            clientList.add(client);
+        }
+        showRaportWindow(clientList);
+    }
+    
     /**
      * Adds new job record to a table
      * @param name
@@ -169,6 +184,20 @@ public class MainMenuController{
         alert.setTitle("ERROR!");
         alert.setHeaderText("An error has accured");
         alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+    
+    public void showRaportWindow(List<Client>Clients){
+        Alert alert  = new Alert(AlertType.INFORMATION);
+        alert.setWidth(300);
+        alert.setHeight(300);
+        alert.setTitle("RAPORT");
+        alert.setHeaderText("List of yout clients");
+        String temp = "";
+        for(Client i : Clients){
+            temp = temp + i.name() + " " + i.surname() + "\n";
+        }
+        alert.setContentText(temp);
         alert.showAndWait();
     }
 }
