@@ -4,6 +4,12 @@ public class Car {
     private String registration;
     private double mileage;
     
+    /**
+     * Basic contructor that gets Car's data and saves it
+     * @param sentModel
+     * @param sentRegistration
+     * @param sentMileage 
+     */
     public Car(String sentModel, String sentRegistration, double sentMileage){
         model = sentModel;
         registration = sentRegistration;
@@ -33,12 +39,27 @@ public class Car {
     public double getMileage() {
         return mileage;
     }
+    
+    /**
+     * Basic setter, sets Car's model
+     * @param sentModel 
+     */
     public void setModel(String sentModel){
         model = sentModel;
     }
+    
+    /**
+     * Basic setter, sets Car's registration
+     * @param sentRegistration 
+     */
     public void setRegistration(String sentRegistration){
         registration = sentRegistration;
     }
+    
+    /**
+     * Basic setter, sets Car's mielage
+     * @param sentMileage 
+     */
     public void setMileage(double sentMileage){
         mileage = sentMileage;
     }

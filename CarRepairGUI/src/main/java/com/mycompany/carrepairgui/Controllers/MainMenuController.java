@@ -1,40 +1,33 @@
 package com.mycompany.carrepairgui.Controllers;
 
-import com.mycompany.carrepairgui.App;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-
-import com.mycompany.carrepairgui.Controllers.AddJobController;
-import com.mycompany.carrepairgui.Model.JobList;
-import com.mycompany.carrepairgui.Model.Job;
-import com.mycompany.carrepairgui.Model.Owner;
-import com.mycompany.carrepairgui.Model.Car;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
 import java.io.IOException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.Tooltip;
 import javafx.stage.*;
-import javafx.util.converter.DoubleStringConverter;
+import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+
+import com.mycompany.carrepairgui.App;
+import com.mycompany.carrepairgui.Controllers.AddJobController;
+import com.mycompany.carrepairgui.Model.JobList;
+import com.mycompany.carrepairgui.Model.Job;
+
 /**
- * FXML Controller class
- *
- * @author SuperStudent-PL
+ * Controller for Main Menu view
+ * @author mateu
  */
 public class MainMenuController{
 
@@ -57,32 +50,28 @@ public class MainMenuController{
     @FXML
     private Button DelJobButton;
     
+    /**
+     * Constructor made to pass original jobList to the Controller
+     * @param sentJobList 
+     */
     public MainMenuController(JobList sentJobList){
         this.jobList = sentJobList;
         data = FXCollections.observableArrayList(sentJobList.getJobList());
-        data.addListener((ListChangeListener.Change<? extends Job> change) -> {
-            while(change.next()){
-                if(change.wasPermutated()){
-                    for(int i = change.getFrom(); i < change.getTo(); i++){
-                        System.out.println("change");
-                    }
-                }
-                else if(change.wasUpdated()){
-                    System.out.println("update");
-                }
-                else{
-                    for(var remitem : change.getRemoved()){
-                        sentJobList.getJobList().remove(remitem);
-                    }
-                    for(var additem : change.getAddedSubList()){
-                        sentJobList.getJobList().add(additem);
-                    }
-                }
-            }
-        });
     }  
     
+    /**
+     * Intializes everything that needs to be initialized
+     * Tooltips, Table, Table cells, Hotkeys
+     */
     public void initialize(){
+        var AddJobTooltip = new Tooltip("Let's you add new job to the table");
+        AddJobTooltip.setStyle("-fx-font: normal bold 14 Langdon; -fx-base: #AE3522; -fx-text-fill: orange;");
+        AddJobButton.setTooltip(AddJobTooltip);
+        
+        var DelJobTooltip = new Tooltip("Let's you delete a job from the table");
+        DelJobTooltip.setStyle("-fx-font: normal bold 14 Langdon; -fx-base: #AE3522; -fx-text-fill: orange;");
+        DelJobButton.setTooltip(DelJobTooltip);                       
+        
         mainMenu_Table.setItems(data);
         mainMenu_Table.setEditable(true);
         
@@ -91,10 +80,42 @@ public class MainMenuController{
         Table_Model.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getModel()));
         Table_Registration.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getRegistration()));
         Table_Mileage.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getMileage()));     
+        
+        Platform.runLater(this::initializeHotkeys);
     }
     
+    /**
+     * Initializes hotkeys
+     */
+    private void initializeHotkeys(){
+        Scene addScene = AddJobButton.getScene();
+        Scene delScene = DelJobButton.getScene();
+        if(addScene != null){
+            addScene.getAccelerators().put(
+                new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN),
+                () -> {
+                try {
+                    handleAddJobButton();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            );
+        }
+        if(delScene != null){
+            delScene.getAccelerators().put(
+                new KeyCodeCombination(KeyCode.DELETE),
+                () -> handleDelJobButton()
+            );
+        }
+    }
+    
+    /**
+     * AddJobButton event handler
+     * @throws IOException 
+     */
     @FXML
-    private void AddJobButton(ActionEvent event) throws IOException {
+    private void handleAddJobButton() throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("AddJob.fxml"));
         Parent root = loader.load();
         AddJobController addJobController = loader.getController();
@@ -104,8 +125,11 @@ public class MainMenuController{
         stage.showAndWait();
     }
 
+    /**
+     * DelJobButton event handler
+     */
     @FXML
-    private void DelJobButton(ActionEvent event) {
+    private void handleDelJobButton() {
         Job selectedJob = (Job) mainMenu_Table.getSelectionModel().getSelectedItem();
         if(selectedJob != null){
             data.remove(selectedJob);
@@ -115,6 +139,14 @@ public class MainMenuController{
         }
     }
     
+    /**
+     * Adds new job record to a table
+     * @param name
+     * @param surname
+     * @param model
+     * @param registration
+     * @param mileage 
+     */
     public void addNewJobRecord(String name, String surname, String model, String registration, String mileage){
         try{
             if(name.isEmpty() || surname.isEmpty() || model.isEmpty() || registration.isEmpty()){
@@ -128,7 +160,10 @@ public class MainMenuController{
             showErrorWindow("Enter proper mileage value (number)");
         }
     }
-    
+    /**
+     * Handler for an error message window
+     * @param errorMessage 
+     */
     public void showErrorWindow(String errorMessage){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("ERROR!");

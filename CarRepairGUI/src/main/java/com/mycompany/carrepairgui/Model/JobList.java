@@ -11,6 +11,9 @@ import java.util.List;
 public class JobList {
     private List<Job>jobList;
     
+    /**
+     * Constructor that initialize's ArrayList
+     */
     public JobList(){
         jobList = new ArrayList<Job>();
     }

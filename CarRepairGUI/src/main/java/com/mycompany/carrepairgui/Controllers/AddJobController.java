@@ -7,14 +7,19 @@ package com.mycompany.carrepairgui.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 
 import com.mycompany.carrepairgui.Controllers.MainMenuController;
-import com.mycompany.carrepairgui.Model.Job;
-import static java.lang.Double.parseDouble;
-import java.util.HashSet;
 
-
-
+/**
+ * Controller for a popup window called from MainMenu controller
+ * It is used by user to add new job to the table
+ * @author mateu
+ */
 public class AddJobController{
     @FXML
     private TextField name;
@@ -26,15 +31,43 @@ public class AddJobController{
     private TextField registration;
     @FXML
     private TextField mileage;
+    @FXML
+    private Button AddJobButton;
     
     private MainMenuController mainController;
     
+    /**
+     * Initializes everything that needs to be initialized
+     * Here calls only hotkey initializator
+     */
+    public void initialize(){
+        Platform.runLater(this::initializeHotkeys);
+    }
+    
+    /**
+     * Set's it's main controller (main menu controller) as it is called from there
+     * @param mainController 
+     */
     public void setMainController(MainMenuController mainController){
         this.mainController = mainController;
     }
     
+    /**
+     * Initializes hotkeys 
+     */
+    private void initializeHotkeys(){
+        Scene addScene = AddJobButton.getScene();
+        addScene.getAccelerators().put(
+                new KeyCodeCombination(KeyCode.ENTER),
+                () -> handleAddJobButton()
+            );
+    }
+    
+    /**
+     * AddJobButton event handler
+     */
     @FXML
-    private void addjob(){
+    private void handleAddJobButton(){
         String nameData = name.getText();
         String surnameData = surname.getText();
         String modelData = model.getText();

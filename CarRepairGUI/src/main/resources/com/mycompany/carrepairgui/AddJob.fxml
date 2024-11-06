@@ -58,7 +58,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button layoutX="141.0" layoutY="341.0" mnemonicParsing="false" onAction="#addjob" prefHeight="45.0" prefWidth="118.0" text="Add Job">
+      <Button fx:id="AddJobButton" layoutX="141.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleAddJobButton" prefHeight="45.0" prefWidth="118.0" text="Add Job">
          <font>
             <Font size="21.0" />
          </font>
