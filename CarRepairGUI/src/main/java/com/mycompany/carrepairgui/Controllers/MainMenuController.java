@@ -25,8 +25,14 @@ import com.mycompany.carrepairgui.Controllers.AddJobController;
 import com.mycompany.carrepairgui.Model.JobList;
 import com.mycompany.carrepairgui.Model.Job;
 import com.mycompany.carrepairgui.Model.Client;
+import com.mycompany.carrepairgui.Model.IncorrectDataException;
+import com.mycompany.carrepairgui.Model.JobStatus;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
 
 /**
  * Controller for Main Menu view
@@ -48,6 +54,8 @@ public class MainMenuController{
     private TableColumn<Job, String> Table_Registration;
     @FXML
     private TableColumn<Job, Double> Table_Mileage;
+    @FXML
+    private TableColumn<Job, JobStatus> Table_Status;
     @FXML
     private Button AddJobButton;
     @FXML
@@ -84,8 +92,85 @@ public class MainMenuController{
         Table_Surname.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getOwner().getSurname()));
         Table_Model.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getModel()));
         Table_Registration.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getRegistration()));
-        Table_Mileage.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getMileage()));     
+        Table_Mileage.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCar().getMileage())); 
+        Table_Status.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getStatus()));
         
+        Table_Name.setCellFactory(TextFieldTableCell.forTableColumn());
+        Table_Name.setOnEditCommit(event -> {
+            String newValue = event.getNewValue();
+            if (newValue == null || newValue.trim().isEmpty()) {
+                showErrorWindow("Edited field can't be empty!");
+                event.consume();   
+            }
+            else{
+                Job job = event.getRowValue(); 
+                job.getOwner().setName(event.getNewValue()); 
+            }
+            mainMenu_Table.refresh(); 
+        });
+        
+        Table_Surname.setCellFactory(TextFieldTableCell.forTableColumn());
+        Table_Surname.setOnEditCommit(event -> {
+            String newValue = event.getNewValue();
+            if (newValue == null || newValue.trim().isEmpty()) {
+                showErrorWindow("Edited field can't be empty!");
+                event.consume();   
+            }
+            else{
+                Job job = event.getRowValue(); 
+                job.getOwner().setSurname(event.getNewValue()); 
+            }
+            mainMenu_Table.refresh(); 
+        });
+        
+        Table_Model.setCellFactory(TextFieldTableCell.forTableColumn());
+        Table_Model.setOnEditCommit(event -> {
+            String newValue = event.getNewValue();
+            if (newValue == null || newValue.trim().isEmpty()) {
+                showErrorWindow("Edited field can't be empty!");
+                event.consume();   
+            }
+            else{
+                Job job = event.getRowValue(); 
+                job.getCar().setModel(event.getNewValue()); 
+            }
+            mainMenu_Table.refresh(); 
+        });
+        
+        Table_Registration.setCellFactory(TextFieldTableCell.forTableColumn());
+        Table_Registration.setOnEditCommit(event -> {
+            String newValue = event.getNewValue();
+            if (newValue == null || newValue.trim().isEmpty()) {
+                showErrorWindow("Edited field can't be empty!");
+                event.consume();   
+            }
+            else{
+                Job job = event.getRowValue();
+                job.getCar().setRegistration(event.getNewValue());
+            }
+            mainMenu_Table.refresh(); 
+        });         
+        Table_Status.setCellFactory(column -> {
+        ComboBoxTableCell<Job, JobStatus> cell = new ComboBoxTableCell<>(FXCollections.observableArrayList(JobStatus.values())) {
+            @Override
+            public void updateItem(JobStatus status, boolean empty) {
+                super.updateItem(status, empty);
+                if (!empty && status != null) {
+                    switch (status) {
+                        case IN_PROGRESS -> setStyle("-fx-text-fill: blue;");
+                        case COMPLETED -> setStyle("-fx-text-fill: green;");
+                        case PENDING -> setStyle("-fx-text-fill: orange;");
+                        case CANCELLED -> setStyle("-fx-text-fill: red;");
+                        default -> setStyle("-fx-text-fill: black;");
+                    }
+                } else {
+                    setStyle("");
+                }
+            }
+            };
+                return cell;
+        });
+        sortAndRefreshTable();
         Platform.runLater(this::initializeHotkeys);
     }
     
@@ -168,7 +253,13 @@ public class MainMenuController{
                 showErrorWindow("Please fill all blank spaces!");
             }
             else{
-                data.add(new Job(name, surname, model, registration, Double.parseDouble(mileage)));
+                try{
+                    data.add(new Job(name, surname, model, registration, Double.parseDouble(mileage)));
+                    sortAndRefreshTable();
+                }
+                catch(IncorrectDataException e){
+                    showErrorWindow(e.getMessage());
+                }
             }
         }
         catch(Exception ex){
@@ -199,5 +290,12 @@ public class MainMenuController{
         }
         alert.setContentText(temp);
         alert.showAndWait();
+    }
+    
+    private void sortAndRefreshTable(){
+        List<Job>sortedList = data.stream()
+            .sorted(Comparator.comparingDouble(job -> job.getCar().getMileage()))
+            .toList(); 
+        data.setAll(sortedList);
     }
 }

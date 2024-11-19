@@ -1,6 +1,5 @@
 package com.mycompany.carrepairgui.Model;
 import com.mycompany.carrepairgui.Model.Job;
-import com.mycompany.carrepairgui.Model.JobNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -32,27 +31,12 @@ public class JobList {
      */
     public void addJob(Job sentJob){
         jobList.add(sentJob);
-    } 
-    
-    /**
-     * Deletes finished job based on car's registration input by user if there's no job with a car with given registration it throws an exception
-     * @param sentRegistration
-     * @throws JobNotFoundException 
-     */
-    public void delJob(String sentRegistration) throws JobNotFoundException{
-        for(int i = 0; i < jobList.size(); i++){
-            if(jobList.get(i).getCar().getRegistration().equals(sentRegistration)){
-                jobList.remove(i);   
-                return;
-            }
-        }
-        throw new JobNotFoundException("Job with car's registration: " + sentRegistration + " not found!");
-    }
-    
+    }  
     /**
      * Overriden method which return job list as a string
      * @return 
      */
+    
     @Override
     public String toString(){
         String res = "";

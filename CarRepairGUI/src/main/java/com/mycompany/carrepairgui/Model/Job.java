@@ -1,6 +1,9 @@
 package com.mycompany.carrepairgui.Model;
 import com.mycompany.carrepairgui.Model.Car;
 import com.mycompany.carrepairgui.Model.Owner;
+import com.mycompany.carrepairgui.Model.JobStatus;
+import com.mycompany.carrepairgui.Model.IncorrectDataException;
+import static com.mycompany.carrepairgui.Model.JobStatus.PENDING;
 import lombok.*;
 @Getter
 @Setter
@@ -9,6 +12,7 @@ import lombok.*;
  * @author mateu
  */
 public class Job {
+    private JobStatus status;
     private Owner owner;
     private Car car;
     
@@ -20,9 +24,15 @@ public class Job {
      * @param registration
      * @param mileage 
      */
-    public Job(String name, String surname, String model, String registration, double mileage){
-        owner = new Owner(name, surname);
-        car = new Car(model, registration, mileage);
+    public Job(String name, String surname, String model, String registration, double mileage) throws IncorrectDataException{
+        if(mileage <= 0){
+            throw new IncorrectDataException("Mileage can not be less than 0!");
+        }
+        else{
+            this.status = PENDING;
+            owner = new Owner(name, surname);
+            car = new Car(model, registration, mileage);
+        }
     }  
     /**
      * Overriden method to convert all job data to string

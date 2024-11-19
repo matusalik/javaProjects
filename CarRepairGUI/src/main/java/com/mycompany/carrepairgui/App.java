@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import com.mycompany.carrepairgui.Model.JobList;
 import com.mycompany.carrepairgui.Controllers.MainMenuController;
+import com.mycompany.carrepairgui.Model.IncorrectDataException;
+import com.mycompany.carrepairgui.Model.Job;
 public class App extends Application {
 
     private static Scene scene;
@@ -32,9 +34,12 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        joblist = new JobList();
-        
+    public static void main(String[] args) throws IncorrectDataException {
+        JobList temp = new JobList();
+        temp.addJob(new Job("Mateusz", "Salik", "Honda", "SZO", 190000));
+        temp.addJob(new Job("Jan", "Kowalski", "Toyota", "SK", 130000));
+        temp.addJob(new Job("Ewa", "Brzoza", "Nissan", "SRB", 12000));
+        joblist = temp;
         launch();
     }
 
