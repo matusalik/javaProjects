@@ -1,9 +1,6 @@
 package com.mycompany.carrepairgui.Model;
-import com.mycompany.carrepairgui.Model.Car;
-import com.mycompany.carrepairgui.Model.Owner;
-import com.mycompany.carrepairgui.Model.JobStatus;
-import com.mycompany.carrepairgui.Model.IncorrectDataException;
 import static com.mycompany.carrepairgui.Model.JobStatus.PENDING;
+import static java.lang.constant.ConstantDescs.NULL;
 import lombok.*;
 @Getter
 @Setter
@@ -27,6 +24,12 @@ public class Job {
     public Job(String name, String surname, String model, String registration, double mileage) throws IncorrectDataException{
         if(mileage <= 0){
             throw new IncorrectDataException("Mileage can not be less than 0!");
+        }
+        else if("".equals(name) || "".equals(surname) || "".equals(model) || "".equals(registration)){
+            throw new IncorrectDataException("No data can be empty!");
+        }
+        else if(name == null || surname == null || registration == null || model == null){
+            throw new IncorrectDataException("No data can be null!");
         }
         else{
             this.status = PENDING;

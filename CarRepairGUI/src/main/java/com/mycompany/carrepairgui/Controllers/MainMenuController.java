@@ -104,7 +104,11 @@ public class MainMenuController{
             }
             else{
                 Job job = event.getRowValue(); 
-                job.getOwner().setName(event.getNewValue()); 
+                try { 
+                    job.getOwner().setName(event.getNewValue());
+                } catch (IncorrectDataException ex) {
+                    showErrorWindow(ex.getMessage());
+                }
             }
             mainMenu_Table.refresh(); 
         });
@@ -118,7 +122,11 @@ public class MainMenuController{
             }
             else{
                 Job job = event.getRowValue(); 
-                job.getOwner().setSurname(event.getNewValue()); 
+                try { 
+                    job.getOwner().setSurname(event.getNewValue());
+                } catch (IncorrectDataException ex) {
+                    showErrorWindow(ex.getMessage());
+                }
             }
             mainMenu_Table.refresh(); 
         });

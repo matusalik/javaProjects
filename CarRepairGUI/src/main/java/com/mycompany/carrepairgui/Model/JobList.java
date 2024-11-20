@@ -1,5 +1,4 @@
 package com.mycompany.carrepairgui.Model;
-import com.mycompany.carrepairgui.Model.Job;
 import java.util.ArrayList;
 import java.util.List;
 /**

@@ -1,5 +1,4 @@
 package com.mycompany.carrepairgui.Model;
-import com.mycompany.carrepairgui.Model.IncorrectDataException;
 import lombok.*;
 @AllArgsConstructor
 @Getter
