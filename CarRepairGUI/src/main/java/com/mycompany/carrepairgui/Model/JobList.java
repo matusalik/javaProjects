@@ -28,8 +28,13 @@ public class JobList {
      * Adds new job to the job list with data based on user's input
      * @param sentJob 
      */
-    public void addJob(Job sentJob){
-        jobList.add(sentJob);
+    public void addJob(Job sentJob) throws IncorrectDataException{
+        if(sentJob  == null){
+            throw new IncorrectDataException("Job can't be null!");
+        }
+        else{
+            jobList.add(sentJob);
+        }
     }  
     /**
      * Overriden method which return job list as a string

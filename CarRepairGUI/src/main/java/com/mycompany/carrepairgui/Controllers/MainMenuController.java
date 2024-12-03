@@ -140,7 +140,12 @@ public class MainMenuController{
             }
             else{
                 Job job = event.getRowValue(); 
-                job.getCar().setModel(event.getNewValue()); 
+                try{
+                    job.getCar().setModel(event.getNewValue()); 
+                }
+                catch(IncorrectDataException e){
+                    showErrorWindow(e.getMessage());
+                }
             }
             mainMenu_Table.refresh(); 
         });
@@ -154,7 +159,12 @@ public class MainMenuController{
             }
             else{
                 Job job = event.getRowValue();
-                job.getCar().setRegistration(event.getNewValue());
+                try{
+                    job.getCar().setRegistration(event.getNewValue());
+                }
+                catch(IncorrectDataException e){
+                    showErrorWindow(e.getMessage());
+                }
             }
             mainMenu_Table.refresh(); 
         });         
