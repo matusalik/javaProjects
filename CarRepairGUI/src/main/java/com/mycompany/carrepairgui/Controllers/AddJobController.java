@@ -16,11 +16,13 @@ import javafx.scene.input.KeyCodeCombination;
 import com.mycompany.carrepairgui.Controllers.MainMenuController;
 
 /**
- * Controller for a popup window called from MainMenu controller
- * It is used by user to add new job to the table
+ * Controller for a popup window called from MainMenu controller It is used by
+ * user to add new job to the table
+ *
  * @author mateu
  */
-public class AddJobController{
+public class AddJobController {
+
     @FXML
     private TextField name;
     @FXML
@@ -33,47 +35,49 @@ public class AddJobController{
     private TextField mileage;
     @FXML
     private Button AddJobButton;
-    
+
     private MainMenuController mainController;
-    
+
     /**
-     * Initializes everything that needs to be initialized
-     * Here calls only hotkey initializator
+     * Initializes everything that needs to be initialized Here calls only
+     * hotkey initializator
      */
-    public void initialize(){
+    public void initialize() {
         Platform.runLater(this::initializeHotkeys);
     }
-    
+
     /**
-     * Set's it's main controller (main menu controller) as it is called from there
-     * @param mainController 
+     * Set's it's main controller (main menu controller) as it is called from
+     * there
+     *
+     * @param mainController
      */
-    public void setMainController(MainMenuController mainController){
+    public void setMainController(MainMenuController mainController) {
         this.mainController = mainController;
     }
-    
+
     /**
-     * Initializes hotkeys 
+     * Initializes hotkeys
      */
-    private void initializeHotkeys(){
+    private void initializeHotkeys() {
         Scene addScene = AddJobButton.getScene();
         addScene.getAccelerators().put(
                 new KeyCodeCombination(KeyCode.ENTER),
                 () -> handleAddJobButton()
-            );
+        );
     }
-    
+
     /**
      * AddJobButton event handler
      */
     @FXML
-    private void handleAddJobButton(){
+    private void handleAddJobButton() {
         String nameData = name.getText();
         String surnameData = surname.getText();
         String modelData = model.getText();
         String registrationData = registration.getText();
         String mileageData = mileage.getText();
-        if(mainController != null){ 
+        if (mainController != null) {
             mainController.addNewJobRecord(nameData, surnameData, modelData, registrationData, mileageData);
         }
         Stage stage = (Stage) name.getScene().getWindow();

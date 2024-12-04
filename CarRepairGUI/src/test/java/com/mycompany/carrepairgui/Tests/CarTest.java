@@ -6,6 +6,11 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 public class CarTest {
+    /**
+     * Test for testing the car setter with proper values
+     * @param model
+     * @throws IncorrectDataException 
+     */
     @ParameterizedTest
     @ValueSource(strings = {"Honda", "Toyota", "Mercedes"})
     void carModelSetterTest(String model) throws IncorrectDataException{
@@ -18,6 +23,11 @@ public class CarTest {
             fail("Exception shouldn't have been thrown!");
         }
     }
+    /**
+     * Test for testing the car setter with null adn empty values
+     * @param model
+     * @throws IncorrectDataException 
+     */
     @ParameterizedTest
     @NullSource
     @EmptySource
@@ -31,6 +41,11 @@ public class CarTest {
         catch(IncorrectDataException e){
         }
     }
+    /**
+     * Test for testing the car setter with proper values
+     * @param registration
+     * @throws IncorrectDataException 
+     */
     @ParameterizedTest
     @ValueSource(strings = {"SZO 123", "SK 7781", "SRB T67J"})
     void carRegistrationSetterTest(String registration) throws IncorrectDataException{
@@ -43,6 +58,11 @@ public class CarTest {
             fail("Exception shouldn't have been thrown!");
         }
     }
+    /**
+     * Test for testing the car setter with null adn empty values
+     * @param registration
+     * @throws IncorrectDataException 
+     */
     @ParameterizedTest
     @NullSource
     @EmptySource

@@ -7,6 +7,11 @@ import com.mycompany.carrepairgui.Model.IncorrectDataException;
 import com.mycompany.carrepairgui.Model.JobList;
 import com.mycompany.carrepairgui.Model.Job;
 public class JobListTest {
+    /**
+     * Test for testing jobList.addJob with null values
+     * @param testJob
+     * @throws IncorrectDataException 
+     */
     @ParameterizedTest
     @NullSource
     void jobListNullAddJobTest(Job testJob) throws IncorrectDataException{
