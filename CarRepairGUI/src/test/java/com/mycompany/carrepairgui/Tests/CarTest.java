@@ -19,7 +19,9 @@ public class CarTest {
         }
     }
     @ParameterizedTest
-    @ValueSource(strings = {"", "", ""})
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = {"", " ", "\n"})
     void carEmptyModelSetterTest(String model) throws IncorrectDataException{
         Car testCar = new Car("t", "t", 0);
         try{
@@ -27,16 +29,6 @@ public class CarTest {
             fail("Exception shoud have been thrown, no data can be empty!");
         }
         catch(IncorrectDataException e){
-        }
-    }
-    @Test
-    void carNullModelSetterTest(){
-        Car testCar = new Car("t", "t", 1);
-        try{
-            testCar.setModel(null);
-            fail("Exception should've been thrown, model can't be null!");
-        }
-        catch(IncorrectDataException e){      
         }
     }
     @ParameterizedTest
@@ -52,7 +44,9 @@ public class CarTest {
         }
     }
     @ParameterizedTest
-    @ValueSource(strings = {"", "", ""})
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = {"", " ", "\n"})
     void carEmptyRegistrationSetterTest(String registration) throws IncorrectDataException{
         Car testCar = new Car("t", "t", 0);
         try{
@@ -60,16 +54,6 @@ public class CarTest {
             fail("Exception shoud have been thrown, no data can be empty!");
         }
         catch(IncorrectDataException e){
-        }
-    }
-    @Test
-    void carNullRegistrationSetterTest(){
-        Car testCar = new Car("t", "t", 1);
-        try{
-            testCar.setRegistration(null);
-            fail("Exception should've been thrown, model can't be null!");
-        }
-        catch(IncorrectDataException e){      
         }
     }
 }

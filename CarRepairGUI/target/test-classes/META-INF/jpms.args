@@ -1,4 +1,0 @@
---patch-module
-com.mycompany.carrepairgui=_
---add-reads
-com.mycompany.carrepairgui=ALL-UNNAMED

@@ -22,14 +22,20 @@ public class Job {
      * @param mileage 
      */
     public Job(String name, String surname, String model, String registration, double mileage) throws IncorrectDataException{
-        if(mileage <= 0){
+        if(name == null || surname == null || registration == null || model == null){
+            throw new IncorrectDataException("No data can be null!");
+        }
+        else if(mileage <= 0){
             throw new IncorrectDataException("Mileage can not be less than 0!");
         }
-        else if("".equals(name) || "".equals(surname) || "".equals(model) || "".equals(registration)){
+        else if(name.equals("") || surname.equals("") || model.equals("") || registration.equals("")){
             throw new IncorrectDataException("No data can be empty!");
         }
-        else if(name == null || surname == null || registration == null || model == null){
-            throw new IncorrectDataException("No data can be null!");
+        else if(name.equals(" ") || surname.equals(" ") || model.equals(" ") || registration.equals(" ")){
+            throw new IncorrectDataException("No data can be empty!");
+        }
+        else if(name.equals("\n") || surname.equals("\n") || model.equals("\n") || registration.equals("\n")){
+            throw new IncorrectDataException("No data can be empty!");
         }
         else{
             this.status = PENDING;

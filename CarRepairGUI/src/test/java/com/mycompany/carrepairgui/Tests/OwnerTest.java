@@ -19,24 +19,16 @@ public class OwnerTest {
         }
     }
     @ParameterizedTest
-    @ValueSource(strings = {"", "", ""})
-    void ownerEmptyNameSetterTest(String name) throws IncorrectDataException{
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = {"", " ", "\n"})
+    void ownerEmptyNullNameSetterTest(String name) throws IncorrectDataException{
         Owner testOwner = new Owner("t", "t");
         try{
             testOwner.setName(name);
             fail("Exception shoud have been thrown, no data can be empty!");
         }
         catch(IncorrectDataException e){
-        }
-    }
-    @Test
-    void carNullNameSetterTest(){
-        Owner testOwner = new Owner("t", "t");
-        try{
-            testOwner.setName(null);
-            fail("Exception should've been thrown, model can't be null!");
-        }
-        catch(IncorrectDataException e){      
         }
     }
     @ParameterizedTest
@@ -52,24 +44,16 @@ public class OwnerTest {
         }
     }  
     @ParameterizedTest
-    @ValueSource(strings = {"", "", ""})
-    void ownerEmptySurnameSetterTest(String surname) throws IncorrectDataException{
+    @NullSource
+    @EmptySource
+    @ValueSource(strings = {"", " ", "\n"})
+    void ownerEmptyNullSurnameSetterTest(String surname) throws IncorrectDataException{
         Owner testOwner = new Owner("t", "t");
         try{
             testOwner.setSurname(surname);
             fail("Exception shoud have been thrown, no data can be empty!");
         }
         catch(IncorrectDataException e){
-        }
-    }
-    @Test
-    void ownerNullSurnameSetterTest(){
-        Owner testOwner = new Owner("t", "t");
-        try{
-            testOwner.setSurname(null);
-            fail("Exception should've been thrown, model can't be null!");
-        }
-        catch(IncorrectDataException e){      
         }
     }
 }

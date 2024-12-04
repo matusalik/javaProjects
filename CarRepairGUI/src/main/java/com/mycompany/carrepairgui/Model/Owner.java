@@ -12,7 +12,7 @@ public class Owner {
     private String surname;
     
     public void setName(String sentName) throws IncorrectDataException{
-        if(sentName == null || sentName.equals("")){
+        if(sentName == null || sentName.equals("") || sentName.equals(" ") || sentName.equals("\n")){
             throw new IncorrectDataException("Name can't be empty!");
         }
         else{
@@ -20,7 +20,7 @@ public class Owner {
         }
     }
     public void setSurname(String sentSurname) throws IncorrectDataException{
-        if(sentSurname == null || sentSurname.equals("")){
+        if(sentSurname == null || sentSurname.equals("") || sentSurname.equals(" ") || sentSurname.equals("\n")){
             throw new IncorrectDataException("Surname can't be empty!");
         }
         else{

@@ -8,7 +8,7 @@ public class Car {
     private double mileage;
     
     public void setModel(String sentModel) throws IncorrectDataException{
-        if(sentModel == null || sentModel.equals("")){
+        if(sentModel == null || sentModel.equals("") || sentModel.equals(" ") || sentModel.equals("\n")){
             throw new IncorrectDataException("Model  can't be empty!");
         }
         else{
@@ -17,7 +17,7 @@ public class Car {
     }
     
     public void setRegistration(String sentRegistration) throws IncorrectDataException{
-        if(sentRegistration == null || sentRegistration.equals("")){
+        if(sentRegistration == null || sentRegistration.equals("") || sentRegistration.equals(" ") || sentRegistration.equals("\n")){
             throw new IncorrectDataException("Registration  can't be empty!");
         }
         else{
