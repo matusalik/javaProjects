@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.mycompany.carrepairweb.Model.JobList;
 import com.mycompany.carrepairweb.Model.Job;
+import com.mycompany.carrepairweb.Model.JobStatus;
 import jakarta.servlet.ServletContext;
 
 /**
@@ -50,7 +51,16 @@ public class JobListServlet extends HttpServlet {
             out.println("<td>");
             out.println("<input type=\"number\" id=\"mileage"+job.getId()+"\" name=\"mileage"+job.getId()+"\" placeholder=\"Mileage\" value=\""+ job.getCar().getMileage() + "\"/>");
             out.println("</td>");
-            out.println("</tr");
+            out.println("<td>");
+            // Tworzymy dropdown dla wartości enum
+            out.println("<select id=\"status" + job.getId() + "\" name=\"status" + job.getId() + "\">");
+            for (JobStatus status : JobStatus.values()) {
+                String selected = status == job.getStatus() ? "selected" : ""; // Oznacz wybrany status
+                out.println("<option value=\"" + status + "\" " + selected + ">" + status + "</option>");
+            }
+            out.println("</select>");
+            out.println("</td>");
+            out.println("</tr>");
         }
     }
 

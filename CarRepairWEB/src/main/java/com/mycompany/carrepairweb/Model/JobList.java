@@ -10,14 +10,14 @@ public class JobList {
     private List<Job>jobList;
     
     /**
-     * Constructor that initialize's ArrayList
+     * Constructor that initializes ArrayList
      */
     public JobList(){
         jobList = new ArrayList<Job>();
         try{
-        addJob(new Job("a", "b", "c", "d", 1));
-        addJob(new Job("g", "b", "c", "d", 300));
-        addJob(new Job("7", "b", "21", "d", 31237));
+        addJob(new Job("Mateusz", "Salik", "HONDA CIVIC", "SZO 6G60", 190000.45));
+        addJob(new Job("Zuzanna", "Krzysztofik", "OPEL CORSA", "KR COSTAM", 51000.54));
+        addJob(new Job("Kamil", "Krupa", "MITSUBISHI LANCER", "SK COSTAM", 2137.420));
         }
         catch(IncorrectDataException e){
             
