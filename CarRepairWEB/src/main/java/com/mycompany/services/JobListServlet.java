@@ -1,4 +1,5 @@
 package com.mycompany.services;
+import com.mycompany.carrepairweb.Model.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -27,14 +28,9 @@ public class JobListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ServletContext context = request.getServletContext();
-        JobList model = (JobList)context.getAttribute("JobListModel");
-        if(model == null){
-            model = new JobList();
-            context.setAttribute("JobListModel", model);
-        }
+        DataSource dataSource = (DataSource)context.getAttribute("DataSource");
         PrintWriter out = response.getWriter();
-        
-        for(Job job : model.getJobList()){
+        for(Job job : dataSource.getJobs()){
             out.println("<tr>");
             out.println("<td>");
             out.println("<input type=\"text\" id=\"name"+job.getId()+"\" name=\"name"+job.getId()+"\" placeholder=\"Name\" value=\""+ job.getOwner().getName() + "\"/>");
@@ -59,6 +55,12 @@ public class JobListServlet extends HttpServlet {
                 out.println("<option value=\"" + status + "\" " + selected + ">" + status + "</option>");
             }
             out.println("</select>");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<input type=\"button\" value=\"Update\" onclick=\"updateJob(" + job.getId() + ", 'name', 'surname', 'model', 'registration', 'mileage', 'status', 'tableJobList', 'errorInfo');\" />");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("<input type=\"button\" value=\"Delete\" onclick=\"deleteJob(" + job.getId() + ",'tableJobList','errorInfo');\" />");
             out.println("</td>");
             out.println("</tr>");
         }

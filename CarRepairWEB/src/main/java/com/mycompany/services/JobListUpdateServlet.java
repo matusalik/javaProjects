@@ -1,8 +1,9 @@
 package com.mycompany.services;
+
 import com.mycompany.carrepairweb.Model.DataSource;
 import com.mycompany.carrepairweb.Model.IncorrectDataException;
 import com.mycompany.carrepairweb.Model.Job;
-import com.mycompany.carrepairweb.Model.JobList;
+import com.mycompany.carrepairweb.Model.JobStatus;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,37 +12,41 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import static java.lang.Double.parseDouble;
-import static java.lang.System.out;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author SuperStudent-PL
+ * @author mateu
  */
-@WebServlet("/jobListInsert")
-public class JobListInsertServlet extends HttpServlet {
-    
+@WebServlet("/jobListUpdate")
+public class JobListUpdateServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, IncorrectDataException {
         
         response.setContentType("text/html;charset=UTF-8");
         
         ServletContext context = request.getServletContext();
-              
         DataSource dataSource = (DataSource)context.getAttribute("DataSource"); 
         
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String model = request.getParameter("model");
-        String registration = request.getParameter("registration");
-        String mileage = request.getParameter("mileage");
-       try{
-           dataSource.persistObject(new Job(name, surname, model, registration, parseDouble(mileage)));
-           response.sendRedirect(request.getContextPath() + "/jobList");
-       }catch(IncorrectDataException ex){
-           out.println(ex.toString());
-           response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-       }
+        PrintWriter out = response.getWriter();
+        
+        try {
+            int id = Integer.parseInt(request.getParameter("jobId"));
+            String name = request.getParameter("name");
+            String surname = request.getParameter("surname");
+            String model = request.getParameter("model");
+            String registration = request.getParameter("registration");
+            double mileage = Double.parseDouble(request.getParameter("mileage"));
+            String statusString = request.getParameter("status");
+            JobStatus status = JobStatus.valueOf(statusString);
+            
+            dataSource.update(new Job(id, name, surname, model, registration, mileage, status));              
+            response.sendRedirect(request.getContextPath() + "/jobList");
+        } catch(IncorrectDataException e){
+            out.println(e.toString());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +61,11 @@ public class JobListInsertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IncorrectDataException ex) {
+            Logger.getLogger(JobListUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +79,11 @@ public class JobListInsertServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IncorrectDataException ex) {
+            Logger.getLogger(JobListUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

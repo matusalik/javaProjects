@@ -1,8 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.mycompany.services;
+
 import com.mycompany.carrepairweb.Model.DataSource;
-import com.mycompany.carrepairweb.Model.IncorrectDataException;
-import com.mycompany.carrepairweb.Model.Job;
-import com.mycompany.carrepairweb.Model.JobList;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,37 +13,31 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import static java.lang.Double.parseDouble;
-import static java.lang.System.out;
 
 /**
  *
- * @author SuperStudent-PL
+ * @author mateu
  */
-@WebServlet("/jobListInsert")
-public class JobListInsertServlet extends HttpServlet {
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+@WebServlet("/jobListDelete")
+public class JobListDeleteServlet extends HttpServlet {
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
         
         ServletContext context = request.getServletContext();
-              
-        DataSource dataSource = (DataSource)context.getAttribute("DataSource"); 
+        DataSource dataSource = (DataSource)context.getAttribute("DataSource");           
         
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String model = request.getParameter("model");
-        String registration = request.getParameter("registration");
-        String mileage = request.getParameter("mileage");
-       try{
-           dataSource.persistObject(new Job(name, surname, model, registration, parseDouble(mileage)));
-           response.sendRedirect(request.getContextPath() + "/jobList");
-       }catch(IncorrectDataException ex){
-           out.println(ex.toString());
-           response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-       }
+        String idArg = request.getParameter("id");
+        PrintWriter out = response.getWriter();        
+        try {
+            int id = Integer.parseInt(idArg);
+            dataSource.delete(id);
+            response.sendRedirect(request.getContextPath() + "/jobList");
+        } catch(NumberFormatException ex){      
+            out.println(ex.toString());
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -6,7 +6,7 @@ import java.util.List;
  * It's a list of a jobs that need to be finished
  * @author mateu
  */
-public class JobList {
+public class JobList implements DataSource{
     private List<Job>jobList;
     
     /**
@@ -56,5 +56,31 @@ public class JobList {
             res = res + jobList.get(i).toString() + "\n";
         }
         return res;
+    }
+
+    @Override
+    public List<Job> getJobs() {
+        return jobList;
+    }
+
+    @Override
+    public void persistObject(Object object) {
+        if(object instanceof Job job) jobList.add(job);
+    }
+
+    @Override
+    public boolean update(Job job) {
+        for(int i = 0; i < jobList.size(); ++i){
+            if(jobList.get(i).getId() == job.getId()){
+                jobList.set(i, job);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return jobList.removeIf(i -> i.getId() == id);
     }
 }

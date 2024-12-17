@@ -47,6 +47,30 @@ public class Job {
             car = new Car(model, registration, mileage);
         }
     }  
+    
+    public Job(int id, String name, String surname, String model, String registration, double mileage, JobStatus status) throws IncorrectDataException{
+        this.id = id;
+        if(name == null || surname == null || registration == null || model == null || status == null){
+            throw new IncorrectDataException("No data can be null!");
+        }
+        else if(mileage <= 0){
+            throw new IncorrectDataException("Mileage can not be less than 0!");
+        }
+        else if(name.equals("") || surname.equals("") || model.equals("") || registration.equals("")){
+            throw new IncorrectDataException("No data can be empty!");
+        }
+        else if(name.equals(" ") || surname.equals(" ") || model.equals(" ") || registration.equals(" ")){
+            throw new IncorrectDataException("No data can be empty!");
+        }
+        else if(name.equals("\n") || surname.equals("\n") || model.equals("\n") || registration.equals("\n")){
+            throw new IncorrectDataException("No data can be empty!");
+        }
+        else{
+            this.status = status;
+            owner = new Owner(name, surname);
+            car = new Car(model, registration, mileage);
+        }
+    }
     /**
      * Overriden method to convert all job data to string
      * @return Job data as string
