@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Servlet responsible of managing the delete job request
  * @author mateu
  */
 @WebServlet("/jobListDelete")

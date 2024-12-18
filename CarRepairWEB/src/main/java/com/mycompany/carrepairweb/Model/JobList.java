@@ -58,16 +58,29 @@ public class JobList implements DataSource{
         return res;
     }
 
+    /**
+     * Function returning jobList array used by DataSource
+     * @return 
+     */
     @Override
     public List<Job> getJobs() {
         return jobList;
     }
 
+    /**
+     * Function used for persisting an object used by DataSource
+     * @param object 
+     */
     @Override
     public void persistObject(Object object) {
         if(object instanceof Job job) jobList.add(job);
     }
 
+    /**
+     * Function updating jobList used by DataSource
+     * @param job
+     * @return 
+     */
     @Override
     public boolean update(Job job) {
         for(int i = 0; i < jobList.size(); ++i){
@@ -79,6 +92,11 @@ public class JobList implements DataSource{
         return false;
     }
 
+    /**
+     * Function deleting job from jobList based on id, used by DataSource
+     * @param id
+     * @return 
+     */
     @Override
     public boolean delete(int id) {
         return jobList.removeIf(i -> i.getId() == id);

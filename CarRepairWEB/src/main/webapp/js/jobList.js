@@ -1,3 +1,9 @@
+/**
+ * Function fetching jobList object
+ * @param {type} name
+ * @param {type} tableId
+ * @returns {undefined}
+ */
 function getJobList(name, tableId){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -9,6 +15,11 @@ function getJobList(name, tableId){
   xhttp.send();
 }
 
+/**
+ * Function fetching all job list from the table
+ * @param {type} tableId
+ * @returns {undefined}
+ */
 function getAllJobList(tableId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -19,6 +30,18 @@ function getAllJobList(tableId) {
   xhttp.open("GET", "jobList", true);
   xhttp.send();
 }
+
+/**
+ * Function inserting new job into jobList and a table
+ * @param {type} name
+ * @param {type} surname
+ * @param {type} model
+ * @param {type} registration
+ * @param {type} mileage
+ * @param {type} tableId
+ * @param {type} errorInfo
+ * @returns {undefined}
+ */
 function insertJob(name, surname, model, registration, mileage, tableId, errorInfo) {
     document.getElementById(errorInfo).innerHTML ="&nbsp;";
     var xhttp = new XMLHttpRequest();
@@ -41,6 +64,19 @@ function insertJob(name, surname, model, registration, mileage, tableId, errorIn
   xhttp.send();
   }
   
+  /**
+   * Function updating jobList with changes made in table
+   * @param {type} jobId
+   * @param {type} name
+   * @param {type} surname
+   * @param {type} model
+   * @param {type} registration
+   * @param {type} mileage
+   * @param {type} status
+   * @param {type} tableId
+   * @param {type} errorInfo
+   * @returns {undefined}
+   */
   function updateJob(jobId, name, surname, model, registration, mileage, status, tableId, errorInfo) {
     document.getElementById(errorInfo).innerHTML ="&nbsp;";
     var xhttp = new XMLHttpRequest();
@@ -71,6 +107,13 @@ function insertJob(name, surname, model, registration, mileage, tableId, errorIn
   xhttp.send();
 }
   
+  /**
+   * Function deleting job from table and main model
+   * @param {type} jobId
+   * @param {type} tableId
+   * @param {type} errorInfo
+   * @returns {undefined}
+   */
   function deleteJob(jobId, tableId, errorInfo){
       document.getElementById(errorInfo).innerHTML ="&nbsp;";
         var xhttp = new XMLHttpRequest();

@@ -15,7 +15,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.System.out;
 
 /**
- *
+ * Servlet responsible of inserting new job into jobList (DataSource)
  * @author SuperStudent-PL
  */
 @WebServlet("/jobListInsert")

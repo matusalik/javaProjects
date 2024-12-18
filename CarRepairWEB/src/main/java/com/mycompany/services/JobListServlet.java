@@ -13,8 +13,8 @@ import com.mycompany.carrepairweb.Model.JobStatus;
 import jakarta.servlet.ServletContext;
 
 /**
- *
- * @author SuperStudent-PL
+ * Servlet processing what to show in the table based on DataSource(JobList)
+ * @author mateu
  */
 @WebServlet("/jobList")
 public class JobListServlet extends HttpServlet {
@@ -23,7 +23,7 @@ public class JobListServlet extends HttpServlet {
     public void init(){
         
     }
-  
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

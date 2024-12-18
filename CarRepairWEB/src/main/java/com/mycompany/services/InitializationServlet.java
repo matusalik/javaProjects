@@ -4,7 +4,10 @@ import jakarta.servlet.http.HttpServlet;
 import com.mycompany.carrepairweb.Model.DataSource;
 import com.mycompany.carrepairweb.Model.JobList;
 
-
+/**
+ * Servlet that initializes DataSource
+ * @author mateu
+ */
 public class InitializationServlet extends HttpServlet { 
     
     @Override

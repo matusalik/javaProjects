@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Servlet processing updating main model and table
  * @author mateu
  */
 @WebServlet("/jobListUpdate")
