@@ -30,17 +30,15 @@ public class JobListUpdateServlet extends HttpServlet {
         DataSource dataSource = (DataSource)context.getAttribute("DataSource"); 
         
         PrintWriter out = response.getWriter();
-        
-        try {
-            int id = Integer.parseInt(request.getParameter("jobId"));
-            String name = request.getParameter("name");
-            String surname = request.getParameter("surname");
-            String model = request.getParameter("model");
-            String registration = request.getParameter("registration");
-            double mileage = Double.parseDouble(request.getParameter("mileage"));
-            String statusString = request.getParameter("status");
-            JobStatus status = JobStatus.valueOf(statusString);
-            
+        int id = Integer.parseInt(request.getParameter("jobId"));
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String model = request.getParameter("model");
+        String registration = request.getParameter("registration");
+        double mileage = Double.parseDouble(request.getParameter("mileage"));
+        String statusString = request.getParameter("status");
+        JobStatus status = JobStatus.valueOf(statusString);
+        try {        
             dataSource.update(new Job(id, name, surname, model, registration, mileage, status));              
             response.sendRedirect(request.getContextPath() + "/jobList");
         } catch(IncorrectDataException e){
