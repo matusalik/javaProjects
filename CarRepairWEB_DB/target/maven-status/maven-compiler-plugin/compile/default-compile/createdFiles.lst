@@ -1,0 +1,16 @@
+com\mycompany\services\JobListDeleteServlet.class
+com\mycompany\carrepairweb\resources\JakartaEE10Resource.class
+com\mycompany\services\JobListUpdateServlet.class
+com\mycompany\carrepairweb\Model\Car.class
+com\mycompany\services\InitializationServlet.class
+com\mycompany\carrepairweb\Model\JobList.class
+com\mycompany\carrepairweb\Model\JobStatus.class
+com\mycompany\carrepairweb\Model\Job.class
+com\mycompany\carrepairweb\Model\Owner.class
+com\mycompany\carrepairweb\Model\DatabaseSource.class
+com\mycompany\services\JobListInsertServlet.class
+com\mycompany\carrepairweb\Model\IncorrectDataException.class
+com\mycompany\carrepairweb\Model\Client.class
+com\mycompany\carrepairweb\Model\DataSource.class
+com\mycompany\services\JobListServlet.class
+com\mycompany\carrepairweb\JakartaRestConfiguration.class

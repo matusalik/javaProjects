@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <script src="js/jobList.js"></script>
+        <link rel="stylesheet" href="css/main.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body onload="getAllJobList('tableJobList')">
+        <h1>People</h1>
+        <div id="errorInfo" class="errorInfo">&nbsp;</div>
+        <hr/>
+        <input type="text" id="name" name="name" placeholder="Name"/>
+        <input type="text" id="surname" name="surname" placeholder="Surname"/>
+        <input type="text" id="model" name="model" placeholder="Model"/>
+        <input type="text" id="registration" name="registration" placeholder="Registration"/>
+        <input type="number" id="mileage" name="mileage" placeholder="Mileage"/>
+        <input type="button" id="Insert" value="Add Job" onClick="insertJob('name', 'surname', 'model', 'registration', 'mileage', 'tableJobList', 'errorInfo');" />
+        <hr/>
+        <table>
+            <thead>                
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Model</th>
+                    <th>Registration</th>
+                    <th>Mileage</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                    <th></th>
+                </tr>
+            </thead>            
+            <tbody id="tableJobList">
+            </tbody>            
+        </table>
+    </body>
+</html>
