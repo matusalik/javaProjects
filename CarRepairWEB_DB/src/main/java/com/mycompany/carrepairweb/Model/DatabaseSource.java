@@ -21,7 +21,17 @@ public class DatabaseSource implements DataSource{
 
     @Override
     public List<Job> getJobs() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            Query query = em.createQuery("SELECT j FROM Job j");            
+            return query.getResultList();         
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return new ArrayList<>();
     }
 
     @Override
