@@ -50,12 +50,29 @@ public class DatabaseSource implements DataSource{
 
     @Override
     public boolean update(Job job) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            em.merge(job);
+            em.getTransaction().commit();
+        } catch(Exception ex){            
+        }        
+        return true;
     }
 
     @Override
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = emf.createEntityManager();
+        try{           
+            em.getTransaction().begin();
+            var result = em.createQuery("DELETE FROM Job j WHERE j.id=:id").setParameter("id", id).executeUpdate() != 0;
+            em.getTransaction().commit(); 
+            return result;
+        } catch(Exception ex) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();            
+        }    
+        return true;
     }
     
 }
