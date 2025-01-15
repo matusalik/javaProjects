@@ -36,11 +36,18 @@ public class JobListInsertServlet extends HttpServlet {
         String registration = request.getParameter("registration");
         String mileage = request.getParameter("mileage");
        try{
-           dataSource.persistObject(new Job(name, surname, model, registration, parseDouble(mileage)));
-           response.sendRedirect(request.getContextPath() + "/jobList");
+            dataSource.persistObject(new Job(name, surname, model, registration, parseDouble(mileage)));
+            response.sendRedirect(request.getContextPath() + "/jobList");
        }catch(IncorrectDataException ex){
-           out.println(ex.toString());
-           response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+           // Ustaw nagłówki odpowiedzi
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+
+            // Wyślij komunikat błędu do klienta
+            PrintWriter out = response.getWriter();
+            out.println(ex.getMessage());
+            out.close();
        }
     }
 
