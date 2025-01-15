@@ -1,5 +1,6 @@
 package com.mycompany.carrepairweb.Model;
 import static com.mycompany.carrepairweb.Model.JobStatus.PENDING;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -21,19 +22,33 @@ import lombok.*;
  * @author mateu
  */
 public class Job {
-    private Random rand = new Random();
     @Id
     private int id;
     
+    @Column(name = "model", length = 30)
+    private String model;
+    
+    @Column(name = "registration", length = 30)
+    private String registration;
+    
+    @Column(name = "mileage")
+    private double mileage;
+    
+    @Column(name = "name", nullable = false)
+    private String name;
+    
+    @Column(name = "surname")
+    private String surname;
+    
+    @Column(name = "status")
     private JobStatus status;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false) 
-    private Owner owner;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "owner_id", nullable = false) 
+//    private Owner owner;
+//    
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "car_id", nullable = false)
+//    private Car car;
     
     /**
      * Basic constructor that gets all job data and saves it
@@ -44,6 +59,7 @@ public class Job {
      * @param mileage 
      */
     public Job(String name, String surname, String model, String registration, double mileage) throws IncorrectDataException{
+        Random rand = new Random();
         this.id = Math.abs(rand.nextInt() % 1000);
         if(name == null || surname == null || registration == null || model == null){
             throw new IncorrectDataException("No data can be null!");
@@ -62,8 +78,13 @@ public class Job {
         }
         else{
             this.status = PENDING;
-            owner = new Owner(name, surname);
-            car = new Car(model, registration, mileage);
+            this.name = name;
+            this.surname = surname;
+            this.model = model;
+            this.registration = registration;
+            this.mileage = mileage;
+//            owner = new Owner(name, surname);
+//            car = new Car(model, registration, mileage);
         }
     }  
     
@@ -86,8 +107,11 @@ public class Job {
         }
         else{
             this.status = status;
-            owner = new Owner(name, surname);
-            car = new Car(model, registration, mileage);
+            this.name = name;
+            this.surname = surname;
+            this.model = model;
+            this.registration = registration;
+            this.mileage = mileage;
         }
     }
     /**
@@ -96,7 +120,7 @@ public class Job {
      */
     @Override
     public String toString(){
-        return owner.getName() + " " + owner.getSurname() + " " + 
-                car.getModel() + " " + car.getRegistration() + " " + car.getMileage(); 
+        return this.name + " " + this.surname + " " + 
+                this.model + " " + this.registration + " " + this.mileage; 
     }
 }

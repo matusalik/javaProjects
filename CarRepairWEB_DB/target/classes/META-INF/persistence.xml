@@ -2,12 +2,10 @@
 <persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <!-- Define Persistence Unit -->
     <persistence-unit name="my_persistence_unit" transaction-type="RESOURCE_LOCAL">
-        <class>com.mycompany.carrepairweb.Model.Car</class>
-        <class>com.mycompany.carrepairweb.Model.Owner</class>
         <class>com.mycompany.carrepairweb.Model.Job</class>
         <properties>
           <property name="jakarta.persistence.jdbc.driver" value="org.apache.derby.client.ClientAutoloadedDriver"/>
-          <property name="jakarta.persistence.jdbc.url" value="jdbc:derby://localhost:1527/project"/>
+          <property name="jakarta.persistence.jdbc.url" value="jdbc:derby://localhost:1527/project1"/>
           <property name="jakarta.persistence.jdbc.user" value="app"/>
           <property name="jakarta.persistence.jdbc.password" value="app"/>
           <property name="jakarta.persistence.schema-generation.database.action" value="create"/>

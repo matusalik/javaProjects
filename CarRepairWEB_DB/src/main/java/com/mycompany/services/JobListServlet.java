@@ -33,19 +33,19 @@ public class JobListServlet extends HttpServlet {
         for(Job job : dataSource.getJobs()){
             out.println("<tr>");
             out.println("<td>");
-            out.println("<input type=\"text\" id=\"name"+job.getId()+"\" name=\"name"+job.getId()+"\" placeholder=\"Name\" value=\""+ job.getOwner().getName() + "\"/>");
+            out.println("<input type=\"text\" id=\"name"+job.getId()+"\" name=\"name"+job.getId()+"\" placeholder=\"Name\" value=\""+ job.getName() + "\"/>");
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"text\" id=\"surname"+job.getId()+"\" name=\"surname"+job.getId()+"\" placeholder=\"Surname\" value=\""+ job.getOwner().getSurname() + "\"/>");
+            out.println("<input type=\"text\" id=\"surname"+job.getId()+"\" name=\"surname"+job.getId()+"\" placeholder=\"Surname\" value=\""+ job.getSurname() + "\"/>");
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"text\" id=\"model"+job.getId()+"\" name=\"model"+job.getId()+"\" placeholder=\"Model\" value=\""+ job.getCar().getModel() + "\"/>");
+            out.println("<input type=\"text\" id=\"model"+job.getId()+"\" name=\"model"+job.getId()+"\" placeholder=\"Model\" value=\""+ job.getModel() + "\"/>");
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"text\" id=\"registration"+job.getId()+"\" name=\"registration"+job.getId()+"\" placeholder=\"Registration\" value=\""+ job.getCar().getRegistration() + "\"/>");
+            out.println("<input type=\"text\" id=\"registration"+job.getId()+"\" name=\"registration"+job.getId()+"\" placeholder=\"Registration\" value=\""+ job.getRegistration() + "\"/>");
             out.println("</td>");
             out.println("<td>");
-            out.println("<input type=\"number\" id=\"mileage"+job.getId()+"\" name=\"mileage"+job.getId()+"\" placeholder=\"Mileage\" value=\""+ job.getCar().getMileage() + "\"/>");
+            out.println("<input type=\"number\" id=\"mileage"+job.getId()+"\" name=\"mileage"+job.getId()+"\" placeholder=\"Mileage\" value=\""+ job.getMileage() + "\"/>");
             out.println("</td>");
             out.println("<td>");
             // Tworzymy dropdown dla wartości enum
